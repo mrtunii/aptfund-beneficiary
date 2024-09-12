@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('organizations', function (Blueprint $table) {
+        Schema::create('campaigns', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('description');
-            $table->string('logo');
-            $table->string('impact');
-            $table->string('address')->nullable();
-            $table->boolean('verified')->default(true);
+            $table->string('title');
+            $table->text('description');
+            $table->string('image');
+            $table->text('fund_allocation_description');
+            $table->boolean('is_public')->default(false);
+            $table->foreignUuid('organization_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('organizations');
+        Schema::dropIfExists('campaigns');
     }
 };
