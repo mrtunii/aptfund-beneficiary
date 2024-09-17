@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->text('fund_allocation_description');
             $table->boolean('is_public')->default(false);
             $table->foreignUuid('organization_id')->constrained()->cascadeOnDelete();
+            $table->float('donation_amount')->default(0);
+            $table->integer('donation_count')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
