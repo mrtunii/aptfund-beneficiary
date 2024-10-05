@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\RegisterOrganization;
+use App\Filament\Widgets\StatsOverview;
 use App\Models\Organization;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -29,6 +30,7 @@ class OrganizationPanelProvider extends PanelProvider
             ->id('organization')
             ->path('organization')
             ->login()
+            ->profile()
             ->registration()
             ->colors([
                 'primary' => Color::Amber,
@@ -41,6 +43,7 @@ class OrganizationPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
+                StatsOverview::class
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -17,13 +17,23 @@ class Campaign extends Model
         'title', 'description', 'image', 'fund_allocation_description', 'is_public', 'organization_id', 'donation_amount', 'donation_count',
     ];
 
-    public function organization(): BelongsTo
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
     {
-        return $this->belongsTo(Organization::class);
+        static::created(function (Campaign $campaign) {
+            $campaign->organizations()->attach(Filament::getTenant()->id, ['percentage' => 100]);
+        });
     }
 
     public function organizations(): BelongsToMany
     {
         return $this->belongsToMany(Organization::class)->withPivot('percentage');
+    }
+
+    public function organization(): BelongsTo
+    {
+        return $this->belongsTo(Organization::class);
     }
 }
