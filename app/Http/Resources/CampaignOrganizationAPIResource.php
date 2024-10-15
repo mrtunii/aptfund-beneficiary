@@ -20,6 +20,7 @@ class CampaignOrganizationAPIResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'address' => $this->address,
             'logo' => Storage::disk('public')->url($this->logo),
             'percentage' => $this->pivot->percentage
         ];

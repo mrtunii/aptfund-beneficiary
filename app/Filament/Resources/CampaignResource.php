@@ -21,6 +21,7 @@ class CampaignResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-europe-africa';
 
+
     public static function form(Form $form): Form
     {
         return $form
@@ -80,7 +81,8 @@ class CampaignResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\OrganizationsRelationManager::class
+            RelationManagers\OrganizationsRelationManager::class,
+            RelationManagers\TransactionsRelationManager::class
         ];
     }
 

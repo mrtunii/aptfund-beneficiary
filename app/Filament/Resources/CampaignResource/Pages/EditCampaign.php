@@ -10,6 +10,11 @@ class EditCampaign extends EditRecord
 {
     protected static string $resource = CampaignResource::class;
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
